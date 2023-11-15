@@ -4,4 +4,4 @@ __pycache__/
 .idea/
 
 bookstore.db
-.env.example
+.env

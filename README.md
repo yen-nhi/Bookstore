@@ -27,6 +27,7 @@ Requirements:
 ```
 sudo apt install python3-pip
 pip install virtualenv
+sudo apt install python3.8-venv
 ``` 
 - Get into inside the project directory 
 ```
