@@ -1,3 +1,4 @@
+from django.contrib.auth import logout
 from django.shortcuts import get_object_or_404
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.authentication import BasicAuthentication, TokenAuthentication
@@ -7,6 +8,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from api.models import BookstoreUser
 from api.serializers import UserRegisterSchema
+
+
 
 
 @swagger_auto_schema(method='POST', request_body=UserRegisterSchema)
@@ -39,6 +42,10 @@ def login(request):
 @api_view(['GET'])
 @authentication_classes([TokenAuthentication, BasicAuthentication])
 @permission_classes([IsAuthenticated])
-def logout(request):
-    request.user.auth_token.delete()
+def user_logout(request):
+    user = request.user
+    token = Token.objects.filter(user=user)
+    if token:
+        user.auth_token.delete()
+    logout(request)
     return Response(status=200, data={'message': 'Successfully logged out.'})
