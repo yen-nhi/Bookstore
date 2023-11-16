@@ -51,7 +51,7 @@ def getBooks(request):
 
     paginator = PageNumberPagination()
     paginator.page_size = 10
-    books = Book.objects.filter(**conditions).all()
+    books = Book.objects.filter(**conditions).order_by('-id')
     data = paginator.paginate_queryset(books, request)
     serializer = BookSerializer(data, many=True)
     return Response(serializer.data)

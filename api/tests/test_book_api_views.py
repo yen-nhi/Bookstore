@@ -50,7 +50,7 @@ class TestAPIWithAuthorizedUser(DataTestSetup):
         assert response.data['message'] == 'Payload invalid.'
 
     def test_get_all_books(self):
-        response = self.client.get(path='/api/get-books/')
+        response = self.client.get(path='/api/get-books')
         assert response.status_code == 200
         assert len(response.data) == 2
         assert response.data[0] == {
@@ -137,7 +137,7 @@ class TestAPIWithAnonymousUser(DataTestSetup):
         assert response.data['detail'] == 'Authentication credentials were not provided.'
 
     def test_get_all_books_non_authorization(self):
-        response = self.client.get(path='/api/get-books/')
+        response = self.client.get(path='/api/get-books')
         assert response.status_code == 200
         assert len(response.data) == 2
         assert response.data[0] == {
