@@ -1,3 +1,4 @@
+import os
 from io import BytesIO
 
 from PIL import Image
@@ -115,6 +116,7 @@ class TestAPIWithAuthorizedUser(DataTestSetup):
         response = self.client.post(path='/api/upload-image/', data=payload, format='multipart')
         assert response.status_code == 200
         assert response.data['message'] == 'Successfully uploaded.'
+        os.remove('media/media/test.png')
 
     def test_images_fail_upload(self):
         payload = {
