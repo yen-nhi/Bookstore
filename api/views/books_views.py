@@ -22,12 +22,13 @@ from api.serializers import BookSerializer, BookCreateSchema, BookUpdateSchema, 
 @api_view(['GET'])
 def getBooks(request):
     """
-    Get all books
+    Get all books with pagination 10 books/page. Add param page to get the other page
     Query params
     :param: title: string
     :param: author: string
     :param: publish_from_date: string format yyyy-mm-dd
     :param: publish_to_date: string format yyyy-mm-dd
+    :param: page: int default 1
     """
     title = request.GET.get('title')
     author = request.GET.get('author')
