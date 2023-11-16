@@ -148,3 +148,8 @@ REST_FRAMEWORK = {
 
     'COERCE_DECIMAL_TO_STRING': False,
 }
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  #production
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'Bookstore/static/'),)  #development
